@@ -71,10 +71,9 @@ function playAround() {
 }
 
 let humanScore = 0, computerScore = 0;
-let playCount = parseInt(prompt("¿Cuántas partidas quieres jugar?"));
-if (isNaN(playCount) || playAround < 1) {
-    throw new Error("Asigne un valor válido!");
-}
-for (let i = 0; i < playCount; i++) {
-    playAround();
-}
+// let playCount = parseInt(prompt("¿Cuántas partidas quieres jugar?"));
+// if (isNaN(playCount) || playAround < 1) {
+//     throw new Error("Asigne un valor válido!");
+// }
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach((e) => e.addEventListener("click", () => playAround()));
