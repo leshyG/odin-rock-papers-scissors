@@ -32,48 +32,38 @@ function convertChoiceUser(choice) {
 
 function checkWinner(user, opp) {
     if (user === opp) {
-        console.log("Empate!")
-    } else if (user === 1) {
-        if (opp === 2) {
-            console.log("Perdiste! Papel le gana a Piedra!")
-            return ++computerScore;
+        log.textContent = "Empate!";
+    } else {
+        if (user === 1 && opp === 3 || user === 2 && opp === 1 || user === 3 && opp === 2) {
+            ++humanScore
+            return 1;
+        } else {
+            ++computerScore;
+            return 0;
         }
-        console.log("Ganaste!")
-        return ++humanScore;
-    } else if (user === 2) {
-        if (opp === 3) {
-            console.log("Perdiste! Tijera le gana a Papel!")
-            return ++computerScore;
-        }
-        console.log("Ganaste!")
-        return ++humanScore;
-    } else if (user == 3) {
-        if (opp === 1) {
-            console.log("Perdiste! Piedra le gana a Tijera!")
-            return ++computerScore;
-        }
-        console.log("Ganaste!")
-        return ++humanScore;
     }
 }
 
 function playAround(choiceId) {
     let userChoice = choiceId;
     let opponentSelection = getComputerChoice();
-
-    console.log(`El usuario eligió ${userChoice}`);
-    console.log(`El oponente eligió: ${opponentSelection}`);
+    log.textContent = "";
+    humanElec.textContent = `El usuario eligió: ${userChoice}`;
+    computerElec.textContent = `El oponente eligió: ${convertChoiceOpponent(opponentSelection)}`;
 
     userSelection = convertChoiceUser(userChoice);
-    checkWinner(userSelection, opponentSelection)
-    console.log(`El oponente va: ${computerScore}`)
-    console.log(`El usuario va : ${humanScore}`)
+    const check = checkWinner(userSelection, opponentSelection);
+    (check === 1 ? humanSpan.textContent = humanScore : computerSpan.textContent = computerScore)
+
 }
 
-let humanScore = 0, computerScore = 0;
-// let playCount = parseInt(prompt("¿Cuántas partidas quieres jugar?"));
-// if (isNaN(playCount) || playAround < 1) {
-//     throw new Error("Asigne un valor válido!");
-// }
+let humanScore = 0; let computerScore = 0;
+
 const buttons = document.querySelectorAll(".btn");
+const humanSpan = document.querySelector("#jugador");
+const computerSpan = document.querySelector("#oponente");
+const log = document.querySelector("#historial");
+const humanElec = document.querySelector("#jugador_el");
+const computerElec = document.querySelector("#oponente_el");
+
 buttons.forEach((e) => e.addEventListener("click", () => playAround(e.id)));
