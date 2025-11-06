@@ -57,14 +57,14 @@ function checkWinner(user, opp) {
     }
 }
 
-function playAround() {
-    let userText = getUserChoice();
+function playAround(choiceId) {
+    let userChoice = choiceId;
     let opponentSelection = getComputerChoice();
 
-    console.log(`El usuario eligió ${userText}`);
+    console.log(`El usuario eligió ${userChoice}`);
     console.log(`El oponente eligió: ${opponentSelection}`);
 
-    userSelection = convertChoiceUser(userText);
+    userSelection = convertChoiceUser(userChoice);
     checkWinner(userSelection, opponentSelection)
     console.log(`El oponente va: ${computerScore}`)
     console.log(`El usuario va : ${humanScore}`)
@@ -76,4 +76,4 @@ let humanScore = 0, computerScore = 0;
 //     throw new Error("Asigne un valor válido!");
 // }
 const buttons = document.querySelectorAll(".btn");
-buttons.forEach((e) => e.addEventListener("click", () => playAround()));
+buttons.forEach((e) => e.addEventListener("click", () => playAround(e.id)));
