@@ -53,8 +53,12 @@ function playAround(choiceId) {
 
     userSelection = convertChoiceUser(userChoice);
     const check = checkWinner(userSelection, opponentSelection);
-    (check === 1 ? humanSpan.textContent = humanScore : computerSpan.textContent = computerScore)
-
+    (check === 1 ? humanSpan.textContent = humanScore : computerSpan.textContent = computerScore);
+    if (humanScore === 5 || computerScore === 5) {
+        ( humanScore > computerScore) ? alert("HUMANO GANA") : alert("COMPUTADORA GANA")
+        humanScore = 0; computerScore = 0;
+        humanSpan.textContent = "0"; computerSpan.textContent = "0";
+    } 
 }
 
 let humanScore = 0; let computerScore = 0;
